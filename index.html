@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0%;
+        padding: 0%;
+      }
+      body {
+        background-color: black;
+      }
+
+      nav {
+        height: 60px;
+        margin: auto;
+        text-align: center;
+        background-color: rgb(31 60 85);
+        color: white;
+        /* position: sticky; */
+        /* top: 0%; */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      #backgroundimg {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+      }
+      #backgroundimgbeforelogin {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+      }
+      /* nav img {
+        width: 100%;
+      } */
+      /* nav span {
+        width: 30%;
+        height: 40px;
+      } */
+      nav img {
+        width: 10%;
+      }
+      #login-logout a {
+        margin: 10px;
+      }
+      input[type="search"] {
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 20px;
+        border: none;
+      }
+      input[type="submit"] {
+        padding: 10px 10px;
+        border-radius: 10px;
+        font-size: 20px;
+        border: none;
+        background-color: rgb(214, 214, 214);
+      }
+      nav a {
+        text-decoration: none;
+        color: rgb(229, 229, 229);
+      }
+      /* nav > span {
+        width: 50%;
+      } */
+      #Main {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 20px;
+        width: 70%;
+        margin: auto;
+        margin-top: 15px;
+        /* margin-right: 4%; */
+      }
+      .product {
+        /* border: 1px solid rgb(90, 90, 90); */
+        text-align: center;
+        background-color: rgb(210, 210, 210);
+        border-radius: 5px;
+
+        /* transition-duration: ; */
+        /* transition-timing-function: t; */
+        transition: all 0.3s ease-in-out;
+        /* transition-delay:;
+        transition-timing-function: ; */
+      }
+      .product > div {
+        position: relative;
+        /* bottom: 0%; */
+        margin-bottom: 0%;
+      }
+      .product > div > div {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 15px;
+      }
+      .product > h2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .product > img {
+        width: 100%;
+      }
+      .product button {
+        border: none;
+        background-color: red;
+        color: white;
+        padding: 2px 5px;
+        cursor: pointer;
+      }
+      .product:hover {
+        transform: scale(1.2);
+      }
+      #santa {
+        width: 24%;
+        top: 10%;
+        height: 90%;
+        left: 0%;
+        position: fixed;
+        /* background-color: red; */
+        z-index: 100;
+        display: none;
+      }
+      #login-logout span {
+        margin-right: 13px;
+      }
+      #login-logout span:first-child {
+        background-color: rgb(255, 0, 0);
+        padding: 3px 4px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      /* #changelink {
+        height: 100%;
+      } */
+      @media (max-width: 500px) {
+        input[type="search"] {
+          padding: 8px 15px;
+          border-radius: 8px;
+          font-size: 12px;
+          border: none;
+        }
+        nav {
+          font-size: 6px;
+          line-height: 10px;
+        }
+        #login-logout {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          /* margin-top: 10px; */
+          font-size: 10px;
+        }
+        #login-logout span {
+          margin-right: 0px;
+          margin-top: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <img id="backgroundimg" src="" alt="" />
+
+    <nav>
+      <img src="./primelogo.png" alt="" />
+
+      <div>
+        <input type="search" placeholder="Search Movie" id="namesofmovie" />
+      </div>
+
+      <h3>AMAZON ALL MOVIES DETAILS HERE</h3>
+
+      <div id="login-logout"></div>
+    </nav>
+    <div id="Main"></div>
+
+    <div id="santa">
+      <!-- -->
+      <!-- <iframe
+        id="changelink"
+        width="100%"
+        height="100%"
+        src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1"
+      >
+      </iframe> -->
+    </div>
+  </body>
+  <script>
+    // function current() {
+    let flag = localStorage.getItem("flag") || "false";
+    console.log(flag);
+    if (flag == "false") {
+      console.log("kartik");
+      document.getElementById("backgroundimg").src = "./saf.jpg";
+      document.querySelector("input[type='search']").style.display = "none";
+      let change = document.getElementById("login-logout");
+      change.innerHTML = ` <a href="./login.html">LOGIN</a>
+        <a href="./signup.html">SIGN-UP</a>`;
+    } else if (flag == "true") {
+      document.getElementById("backgroundimg").src = "./MLP.jpg";
+      let name = localStorage.getItem("namee");
+      let change = document.getElementById("login-logout");
+      change.innerHTML = ` <span id="logout">LOGOUT</span>
+        <span>Hello,${name}</span>`;
+      document.getElementById("logout").addEventListener("click", logout);
+    }
+    // }
+
+    document
+      .getElementById("namesofmovie")
+      .addEventListener("input", debounced(tata, 500));
+
+    function debounced(fn, delay) {
+      let Timeout;
+      return function () {
+        if (Timeout) clearTimeout(Timeout);
+
+        Timeout = setTimeout(function () {
+          fn();
+        }, delay);
+      };
+    }
+    var dat;
+    function tata() {
+      let name = document.getElementById("namesofmovie").value;
+      let url = `https://api.themoviedb.org/3/search/movie?&api_key=5b5d250c93af52d7d0a5bd6320cfe85d&query=${name}`;
+      async function promise(res, rej) {
+        try {
+          let ans = await fetch(url);
+          let ans1 = await ans.json();
+
+          dat = ans1.results;
+          display(dat);
+        } catch (error) {
+          console.log("not-ok");
+          let Main = document.createElement("h1");
+          Main.innerHTML = `Cannot find = ${name} `;
+          Main.style.color = "red";
+          document.getElementById("Main").append(Main);
+        }
+      }
+      promise();
+    }
+
+    function display(allMovies) {
+      document.getElementById("Main").innerHTML = "";
+      allMovies.map(function (el, en) {
+        if (el.poster_path != null) {
+          let Main = document.createElement("div");
+          Main.setAttribute("class", "product");
+          Main.setAttribute("id", el.id);
+          Main.addEventListener("mouseover", viewtrailer);
+          Main.addEventListener("mouseout", func);
+          let img = document.createElement("img");
+          img.setAttribute(
+            "src",
+            "https://image.tmdb.org/t/p/w500/" + el.poster_path
+          );
+          img.setAttribute("id", el.id);
+          let Mainll = document.createElement("div");
+          // MainAll.setAttribute("id", el.id);
+          let name = document.createElement("h2");
+          name.innerText = el.title;
+          name.setAttribute("id", "name");
+          let element = document.createElement("div");
+          element.setAttribute("class", "allelement");
+          element.setAttribute("id", el.id);
+          let rating = document.createElement("p");
+          rating.setAttribute("id", "p");
+          rating.innerText = "IMDb Rating -" + el.vote_average;
+          let date = document.createElement("p");
+          date.innerText = "Release Date -" + el.release_date;
+          date.setAttribute("id", "date");
+          Mainll.setAttribute("class", "allMain");
+
+          element.append(rating, date);
+          Mainll.append(name, element);
+          Main.append(img, Mainll);
+          document.getElementById("Main").append(Main);
+        }
+      });
+    }
+    let divid;
+    function viewtrailer() {
+      // event.preventDefault();
+      // console.log("IN");
+      let fresh = event.target.id;
+      let classs = event.target.className;
+
+      if (
+        classs != "product" &&
+        fresh != "Main" &&
+        classs != "allMain" &&
+        fresh != "name" &&
+        fresh != "p" &&
+        fresh != "date"
+      ) {
+        // console.log(event.target.parentNode);
+        divid = event.target.parentNode;
+        // event.target.parentNode
+
+        let url = `https://api.themoviedb.org/3/movie/${fresh}/videos?api_key=5b5d250c93af52d7d0a5bd6320cfe85d`;
+        async function promise(res, rej) {
+          try {
+            let ans = await fetch(url);
+            let ans1 = await ans.json();
+            // console.log(ans1.results[0].key);
+            changelink(ans1.results[0].key);
+          } catch (error) {
+            // return;
+          }
+        }
+        promise();
+      }
+      // waitUntil();
+    }
+    function changelink(k) {
+      let iddd = divid.id;
+      divid.innerHTML = "";
+      let frame = document.createElement("iframe");
+
+      frame.id = "changelink";
+      frame.style.width = "100%";
+      frame.style.height = "100%";
+      // frame.src = "https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1";
+
+      document.getElementById(iddd).append(frame);
+      document.getElementById("santa").style.display = "block";
+      let link = document.getElementById("changelink");
+      frame.src = `https://www.youtube.com/embed/${k}?&autoplay=1&volume=4`;
+      // console.log(event.target);
+    }
+    function func(k) {
+      display(dat);
+    }
+
+    function logout() {
+      console.log("kar");
+      localStorage.setItem("flag", "false");
+      localStorage.setItem("namee", "");
+      location.reload();
+    }
+  </script>
+</html>

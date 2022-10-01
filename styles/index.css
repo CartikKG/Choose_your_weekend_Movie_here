@@ -1,0 +1,106 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    background-color: black;
+}
+
+nav {
+    height: 40px;
+    border: 2px solid black;
+    font-size: 20px;
+    /* justify-content: space-between; */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgb(31 60 85)
+}
+
+nav>span {
+    margin-right: 5%;
+}
+
+span>a {
+    text-decoration: none;
+    font-size: large;
+    font-weight: bold;
+    color: black;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    border: 2px solid black;
+    padding: 8px 10px;
+    margin-top: 12%;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="submit"] {
+    width: 40%;
+    margin: auto;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: aquamarine;
+    color: black;
+}
+
+#movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    text-align: center;
+}
+
+
+
+#movies>div>img {
+    width: 100%;
+}
+
+#movies>div {
+    border: 1px solid rgb(45, 45, 45);
+    background-color: rgb(206, 206, 206);
+    transition: all 0.3s ease-in-out;
+}
+
+#movies>div:hover {
+    transform: scale(1.1);
+}
+
+#slideshow>div>img {
+    width: 100%;
+    height: 400px;
+    transition: all 0.3s ease-in-out;
+}
+
+#slideshow>div>img:hover {
+    transform: scale(1.1);
+}
+
+#sort-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 29px;
+    margin-bottom: 15px;
+}
+
+#sort-buttons>button {
+    background-color: rgb(221, 221, 221);
+    color: black;
+    border: 0;
+    padding: 4px 8px;
+    border-radius: 10px;
+}
